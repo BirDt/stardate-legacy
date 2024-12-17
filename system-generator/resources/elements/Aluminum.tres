@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://c2ba4kpsmjprx"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Aluminum"
+atomic_number = 13
+symbol = "Al"
+natural = true
+has_temp_data = true
+melting_point = 933.4
+boiling_point = 2792
+category = 5

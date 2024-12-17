@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://heh1fmvut6aq"]
+
+[ext_resource type="Texture2D" uid="uid://b030aatg1bb6s" path="res://sprites/icons/Location.svg" id="1_yxmwh"]
+[ext_resource type="Script" path="res://system-generator/components/surface pois/geysers.gd" id="2_lx6jo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggheg"]
+size = Vector3(0.040168, 0.0391014, 0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_myku3"]
+size = Vector2(4, 4)
+
+[node name="Geysers" type="Sprite3D"]
+pixel_size = 0.0005
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_yxmwh")
+script = ExtResource("2_lx6jo")
+
+[node name="HoverDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000423828, -0.00050772, 0)
+shape = SubResource("BoxShape3D_ggheg")
+
+[node name="PoIInfo" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="PoIInfo"]
+layout_mode = 2
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -62.0
+offset_right = 592.0
+offset_bottom = 47.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PoIInfo/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
+modulate = Color(0.347656, 0.347656, 0.347656, 1)
+texture = SubResource("PlaceholderTexture2D_myku3")
+
+[connection signal="input_event" from="HoverDetector" to="." method="_on_hover_detector_input_event"]
+[connection signal="mouse_entered" from="HoverDetector" to="." method="_on_hover_detector_mouse_entered"]
+[connection signal="mouse_exited" from="HoverDetector" to="." method="_on_hover_detector_mouse_exited"]

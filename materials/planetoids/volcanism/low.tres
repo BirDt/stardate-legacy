@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cy1i028q0o52i"]
+
+[ext_resource type="Material" uid="uid://btb54rolgdef" path="res://materials/planetoids/atmos/earthlike.tres" id="1_v3ew0"]
+
+[resource]
+resource_local_to_scene = true
+next_pass = ExtResource("1_v3ew0")
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)

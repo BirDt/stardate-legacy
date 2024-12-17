@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://dcvrpd44mlfmq"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Holmium"
+atomic_number = 67
+symbol = "Ho"
+natural = true
+has_temp_data = true
+melting_point = 1743.15
+boiling_point = 2993
+category = 8

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://bp51ey0h1celi"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Indium"
+atomic_number = 49
+symbol = "In"
+natural = true
+has_temp_data = true
+melting_point = 429.91
+boiling_point = 2345
+category = 5

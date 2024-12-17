@@ -1,0 +1,15 @@
+
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://b1mtqdm7fvk7b"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Francium"
+atomic_number = 87
+symbol = "Fr"
+natural = true
+has_temp_data = true
+melting_point = 300.15
+boiling_point = 950
+category = 3

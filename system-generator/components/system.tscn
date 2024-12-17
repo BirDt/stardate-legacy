@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxr7ioumh5fnm"]
+
+[ext_resource type="Shader" path="res://system-generator/components/canvas_sky.gdshader" id="1_6yspv"]
+[ext_resource type="Script" path="res://system-generator/components/system.gd" id="1_s5xr7"]
+[ext_resource type="PackedScene" uid="uid://c3t7kdemqhuha" path="res://gameobjects/orbit_camera.tscn" id="3_gk8vt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3by1"]
+shader = ExtResource("1_6yspv")
+shader_parameter/seed = 0.0
+shader_parameter/sky_color = Color(0.0552492, 0.0332336, 0.0703125, 1)
+shader_parameter/star_base_color = Color(0.984314, 0.439216, 0.309804, 1)
+shader_parameter/star_hue_offset = 1.0
+shader_parameter/star_intensity = 0.073
+shader_parameter/star_twinkle_speed = 1.5
+shader_parameter/star_twinkle_intensity = 0.2
+shader_parameter/layer_scale = 20.0
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 3
+
+[sub_resource type="Sky" id="Sky_0hsem"]
+sky_material = SubResource("ShaderMaterial_d3by1")
+
+[sub_resource type="Environment" id="Environment_rqylx"]
+background_mode = 2
+sky = SubResource("Sky_0hsem")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
+tonemap_mode = 2
+
+[node name="System" type="Node3D"]
+script = ExtResource("1_s5xr7")
+force_habitable = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rqylx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 100.0
+omni_attenuation = 0.0
+
+[node name="CameraParent" parent="." instance=ExtResource("3_gk8vt")]
+
+[node name="SystemUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SystemOutlineToggle" type="Button" parent="SystemUI"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Show System Outline"
+
+[node name="SystemOutlineClose" type="Button" parent="SystemUI"]
+layout_mode = 1
+offset_left = 184.0
+offset_right = 215.0
+offset_bottom = 31.0
+text = "X"
+
+[node name="SystemOutline" type="Panel" parent="SystemUI"]
+visible = false
+layout_mode = 1
+offset_left = 11.0
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = 621.0
+
+[node name="MarginContainer" type="MarginContainer" parent="SystemUI/SystemOutline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_top = 44
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 13
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SystemUI/SystemOutline/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SystemUI/SystemOutline/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SystemUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Tick 01"
+
+[node name="TimescaleSlider" type="HSlider" parent="SystemUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -263.0
+offset_top = 31.0
+offset_right = -9.0
+offset_bottom = 47.0
+grow_horizontal = 0
+max_value = 5.0
+value = 1.0
+rounded = true
+tick_count = 6
+
+[connection signal="pressed" from="SystemUI/SystemOutlineToggle" to="SystemUI/SystemOutline" method="show"]
+[connection signal="pressed" from="SystemUI/SystemOutlineClose" to="SystemUI/SystemOutline" method="hide"]
+[connection signal="value_changed" from="SystemUI/TimescaleSlider" to="." method="_on_timescale_slider_value_changed"]

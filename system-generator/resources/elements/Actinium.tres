@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://dobstq0dwye1c"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Actinium"
+atomic_number = 89
+symbol = "Ac"
+natural = true
+has_temp_data = true
+melting_point = 1323.15
+boiling_point = 3471
+category = 9

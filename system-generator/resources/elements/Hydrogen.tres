@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://cnmhdn60w6o16"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Hydrogen"
+atomic_number = 1
+symbol = "H"
+natural = true
+has_temp_data = true
+melting_point = 14.175
+boiling_point = 20.28
+category = 0

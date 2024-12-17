@@ -1,0 +1,15 @@
+
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://b1mtqdm7fvk7b"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Neptunium"
+atomic_number = 93
+symbol = "Np"
+natural = false
+has_temp_data = true
+melting_point = 913.15
+boiling_point = 4273
+category = 9

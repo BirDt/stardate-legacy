@@ -1,0 +1,15 @@
+
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://b1mtqdm7fvk7b"]
+
+[ext_resource type="Script" path="res://scripts/resources/element.gd" id="1_kcefu"]
+
+[resource]
+script = ExtResource("1_kcefu")
+name = "Technetium"
+atomic_number = 43
+symbol = "Tc"
+natural = false
+has_temp_data = true
+melting_point = 2473.15
+boiling_point = 5150
+category = 7

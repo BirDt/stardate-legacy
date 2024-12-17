@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://8rpge7hpo8pv"]
+
+[ext_resource type="Script" path="res://system-generator/components/ring.gd" id="1_i1ja8"]
+
+[sub_resource type="Gradient" id="Gradient_c2acp"]
+offsets = PackedFloat32Array(0.00735294, 0.533088, 0.805147, 0.9375)
+colors = PackedColorArray(0, 0, 0, 0, 0.530701, 0.557006, 0.578125, 0.72549, 0.699463, 0.725328, 0.746094, 0.72549, 0.464844, 0.418669, 0.295975, 0.72549)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eghxb"]
+noise_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_icaxu"]
+resource_local_to_scene = true
+height = 1
+seamless = true
+color_ramp = SubResource("Gradient_c2acp")
+noise = SubResource("FastNoiseLite_eghxb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5i7a"]
+transparency = 1
+albedo_texture = SubResource("NoiseTexture2D_icaxu")
+uv1_scale = Vector3(0, 1.195, -2.31)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j0crp"]
+height = 0.001
+radius = 2.0
+
+[node name="Ring" type="CSGPolygon3D"]
+polygon = PackedVector2Array(1, 0, 1, 0.001, 2, 0.001, 2, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+material = SubResource("StandardMaterial3D_d5i7a")
+script = ExtResource("1_i1ja8")
+
+[node name="HoverDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverDetector"]
+shape = SubResource("CylinderShape3D_j0crp")
+
+[node name="RingDetails" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="RingDetails"]
+layout_mode = 2
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -163.0
+offset_right = 707.0
+offset_bottom = 148.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RingDetails/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[connection signal="input_event" from="HoverDetector" to="." method="_on_hover_detector_input_event"]
+[connection signal="mouse_entered" from="HoverDetector" to="." method="_on_hover_detector_mouse_entered"]
+[connection signal="mouse_exited" from="HoverDetector" to="." method="_on_hover_detector_mouse_exited"]

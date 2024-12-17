@@ -1,0 +1,131 @@
+[gd_scene load_steps=13 format=3 uid="uid://c3iteljipyyvk"]
+
+[ext_resource type="Script" path="res://system-generator/components/planetoid.gd" id="1_yr74g"]
+[ext_resource type="Script" path="res://addons/draw3d/draw_3d.gd" id="2_ix2si"]
+[ext_resource type="Script" path="res://system-generator/components/planetary_surface.gd" id="3_rtpre"]
+
+[sub_resource type="Gradient" id="Gradient_hwuxu"]
+colors = PackedColorArray(0.300781, 0.300781, 0.300781, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b2qww"]
+gradient = SubResource("Gradient_hwuxu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwt6o"]
+albedo_texture = SubResource("GradientTexture1D_b2qww")
+
+[sub_resource type="SphereMesh" id="SphereMesh_qdkka"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_mwt6o")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_bstwh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_88sq8"]
+resource_local_to_scene = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_adfjd"]
+viewport_path = NodePath("Surface/SurfaceProjection/SurfaceMap")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1dg0"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_adfjd")
+uv1_offset = Vector3(0.5, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wgm16"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_o1dg0")
+
+[node name="Planetoid" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_qdkka")
+script = ExtResource("1_yr74g")
+
+[node name="OrbitVis" type="MeshInstance3D" parent="."]
+mesh = SubResource("ImmediateMesh_bstwh")
+script = ExtResource("2_ix2si")
+circle_resolution = 1000
+default_color = Color(0.729412, 0.0862745, 0.0470588, 1)
+
+[node name="HoverDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverDetector"]
+shape = SubResource("SphereShape3D_88sq8")
+
+[node name="PlanetDetails" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="PlanetDetails"]
+layout_mode = 2
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -145.0
+offset_right = 592.0
+offset_bottom = 130.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlanetDetails/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Coordinates" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="Coordinates"]
+layout_mode = 2
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -45.0
+offset_right = 592.0
+offset_bottom = 30.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Coordinates/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SurfaceRegion" type="Label" parent="Coordinates/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Longitude" type="Label" parent="Coordinates/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Latitude" type="Label" parent="Coordinates/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Surface" type="Node3D" parent="."]
+visible = false
+script = ExtResource("3_rtpre")
+
+[node name="SurfaceProjection" type="MeshInstance3D" parent="Surface"]
+mesh = SubResource("SphereMesh_wgm16")
+
+[node name="SurfaceMap" type="SubViewport" parent="Surface/SurfaceProjection"]
+transparent_bg = true
+size = Vector2i(360, 180)
+
+[node name="Cursor" type="Polygon2D" parent="Surface/SurfaceProjection/SurfaceMap"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
+vertex_colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1)
+
+[node name="PointsOfInterest" type="Node3D" parent="Surface"]
+
+[connection signal="input_event" from="HoverDetector" to="." method="_on_click_detector_input_event"]
+[connection signal="mouse_entered" from="HoverDetector" to="." method="_on_hover_detector_mouse_entered"]
+[connection signal="mouse_exited" from="HoverDetector" to="." method="_on_hover_detector_mouse_exited"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgtuljxdcmpdl"]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node2D
+
+var delaunay: Delaunay
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	delaunay = Delaunay.new(Rect2(0, 0, 360, 180))
+	
+	randomize()
+	for x in range(10):
+		for y in range(10):
+			add_point(Vector2(deg_to_rad((x * 36) - 180), deg_to_rad((y * 18) - 90)))
+
+
+	var triangles = delaunay.triangulate()
+		
+	var sites = delaunay.make_voronoi(triangles)
+	for site in sites:
+		show_site(site)
+	
+
+func add_point(point: Vector2):
+	var polygon = Polygon2D.new()
+	var p = PackedVector2Array()
+	var s = 5
+	p.append(Vector2(-s,s))
+	p.append(Vector2(s,s))
+	p.append(Vector2(s,-s))
+	p.append(Vector2(-s,-s))
+	polygon.polygon = p
+	polygon.color = Color.BURLYWOOD
+	polygon.position = point
+	add_child(polygon)
+	delaunay.add_point(point)
+
+func show_triangle(triangle: Delaunay.Triangle):
+	var line = Line2D.new()
+	var p = PackedVector2Array()
+	p.append(triangle.a)
+	p.append(triangle.b)
+	p.append(triangle.c)
+	p.append(triangle.a)
+	line.points = p
+	line.width = 1
+	line.antialiased
+	add_child(line)
+
+func show_site(site: Delaunay.VoronoiSite):
+####As Lines
+	var line = Line2D.new()
+	var p = site.polygon
+	p.append(p[0])
+	line.points = p
+	line.width = 1
+	line.default_color = Color.GREEN_YELLOW
+	add_child(line)
+
+####As Polygons
+	#var polygon = Polygon2D.new()
+	#var p = site.polygon
+	#p.append(p[0])
+	#polygon.polygon = p
+	#polygon.color = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1),0.5)
+	#polygon.z_index = -1
+	#add_child(polygon)
+	
+func show_neighbour(edge: Delaunay.VoronoiEdge):
+	var line = Line2D.new()
+	var points: PackedVector2Array
+	var l = 6
+	var s = lerp(edge.a, edge.b, 0.6)
+	var dir = edge.a.direction_to(edge.b).orthogonal()
+	points.append(s + dir * l)
+	points.append(s - dir * l)
+	line.points = points
+	line.width = 1
+	line.default_color = Color.CYAN
+	add_child(line)
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Generator" type="Node2D" parent="."]
+position = Vector2(0, 1)
+script = SubResource("1")
+
+[node name="Polygon2D" type="Polygon2D" parent="Generator"]

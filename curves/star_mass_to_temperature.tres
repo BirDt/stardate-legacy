@@ -1,0 +1,8 @@
+[gd_resource type="Curve" format=3 uid="uid://dy72q7ee0tr17"]
+
+[resource]
+min_value = 2.4
+max_value = 50.0
+bake_resolution = 1000
+_data = [Vector2(0, 2.4), 0.0, 287.143, 0, 1, Vector2(0.007, 4.41), 287.143, 456.667, 1, 1, Vector2(0.01, 5.78), 456.667, 240.0, 1, 1, Vector2(0.013, 6.5), 240.0, 265.0, 1, 1, Vector2(0.021, 8.62), 265.0, 176.818, 1, 1, Vector2(0.065, 16.4), 176.818, 75.7895, 1, 1, Vector2(0.35, 38), 75.7895, 18.4615, 1, 1, Vector2(1, 50), 18.4615, 0.0, 1, 0]
+point_count = 8

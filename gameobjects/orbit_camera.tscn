@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3t7kdemqhuha"]
+
+[ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="1_35j57"]
+[ext_resource type="Script" path="res://gameobjects/orbit_camera.gd" id="1_aj2aj"]
+
+[node name="CameraParent" type="Node3D"]
+script = ExtResource("1_aj2aj")
+
+[node name="TrackballCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+far = 1000.0
+script = ExtResource("1_35j57")
+stabilize_horizon = true
+zoom_minimum = 20.0
+enable_pitch_limit = true
+pitch_top_limit = 0.9
+pitch_bottom_limit = -0.9
+
+[node name="ToggleDetailView" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+text = "Detail View"
+
+[connection signal="pressed" from="ToggleDetailView" to="." method="_on_toggle_detail_view_pressed"]
