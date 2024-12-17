@@ -1,5 +1,7 @@
 # Stardate Legacy
 
+[![Stardate Legacy Demo Video](https://img.youtube.com/vi/4Iw23efu-lM/0.jpg)](https://www.youtube.com/watch?v=4Iw23efu-lM)
+
 ## What is this?
 
 Elevator pitch: a semi-realistic solo RPG focused VTT mixed with realtime simulation elements.
