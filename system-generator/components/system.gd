@@ -196,3 +196,7 @@ func _tick_process(t) -> void:
 
 func _on_timescale_slider_value_changed(value: float) -> void:
 	WorldController.timescale_index = floor(value)
+
+
+func _on_back_to_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://system-generator/components/system_loader.tscn")

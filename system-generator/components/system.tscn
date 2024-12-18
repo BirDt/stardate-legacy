@@ -30,7 +30,6 @@ tonemap_mode = 2
 
 [node name="System" type="Node3D"]
 script = ExtResource("1_s5xr7")
-force_habitable = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rqylx")
@@ -114,6 +113,20 @@ value = 1.0
 rounded = true
 tick_count = 6
 
+[node name="BackToMenu" type="Button" parent="SystemUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back to Menu"
+
 [connection signal="pressed" from="SystemUI/SystemOutlineToggle" to="SystemUI/SystemOutline" method="show"]
 [connection signal="pressed" from="SystemUI/SystemOutlineClose" to="SystemUI/SystemOutline" method="hide"]
 [connection signal="value_changed" from="SystemUI/TimescaleSlider" to="." method="_on_timescale_slider_value_changed"]
+[connection signal="pressed" from="SystemUI/BackToMenu" to="." method="_on_back_to_menu_pressed"]
