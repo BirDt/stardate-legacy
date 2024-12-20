@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxr7ioumh5fnm"]
+[gd_scene load_steps=8 format=3 uid="uid://cxr7ioumh5fnm"]
 
 [ext_resource type="Shader" path="res://system-generator/components/canvas_sky.gdshader" id="1_6yspv"]
 [ext_resource type="Script" path="res://system-generator/components/system.gd" id="1_s5xr7"]
 [ext_resource type="PackedScene" uid="uid://c3t7kdemqhuha" path="res://gameobjects/orbit_camera.tscn" id="3_gk8vt"]
+[ext_resource type="PackedScene" uid="uid://bgqjeety3yj73" path="res://society-generator/components/society.tscn" id="4_4dvh6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3by1"]
 shader = ExtResource("1_6yspv")
@@ -126,7 +127,28 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Back to Menu"
 
+[node name="Society" type="Button" parent="SystemUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 114.0
+grow_vertical = 0
+text = "Society"
+
+[node name="Label" type="Label" parent="SystemUI/Society"]
+layout_mode = 0
+offset_top = -26.0
+offset_right = 114.0
+offset_bottom = 23.0
+text = "we live in a"
+horizontal_alignment = 1
+
+[node name="Society" parent="." instance=ExtResource("4_4dvh6")]
+
 [connection signal="pressed" from="SystemUI/SystemOutlineToggle" to="SystemUI/SystemOutline" method="show"]
 [connection signal="pressed" from="SystemUI/SystemOutlineClose" to="SystemUI/SystemOutline" method="hide"]
 [connection signal="value_changed" from="SystemUI/TimescaleSlider" to="." method="_on_timescale_slider_value_changed"]
 [connection signal="pressed" from="SystemUI/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="SystemUI/Society" to="Society" method="show_menu"]

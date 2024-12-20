@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Culture" load_steps=2 format=3 uid="uid://b8yma47d1ba3q"]
+
+[ext_resource type="Script" path="res://scripts/resources/culture.gd" id="1_5oyb0"]
+
+[resource]
+script = ExtResource("1_5oyb0")
+power_distance = -0.2
+individualism = 0.2
+achievement_motivation = 0.24
+uncertainty_avoidance = -0.04
+long_term_orientation = 0.0
+indulgence = 0.36
+communication_style = 0.7
+time_orientation = 0.6
+trust = 0.2
+life_value = 0.75
+risk_aversion = 0.0
+privacy = -0.2
+work_ethic = 0.5
+environmental_orientation = 0.2
+ethical_orientation = 0.3
+cultural_patience = 0.5
+culture_name = "Western"

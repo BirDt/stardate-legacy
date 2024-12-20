@@ -1,0 +1,234 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgqjeety3yj73"]
+
+[ext_resource type="Script" path="res://society-generator/components/society.gd" id="1_rn0nr"]
+
+[node name="Society" type="Node"]
+script = ExtResource("1_rn0nr")
+
+[node name="GeneratorMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="GeneratorMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -347.0
+offset_top = -374.0
+offset_right = 347.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GeneratorMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GeneratorMenu/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Society Generator"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Society Age (Years)"
+
+[node name="AgeInput" type="SpinBox" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "How long after the arrival of the first colony ship should we simulate?"
+value = 20.0
+allow_greater = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Seed Population (Individuals)"
+
+[node name="SeedPopInput" type="SpinBox" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+tooltip_text = "How many individuals were on the ship when it first launched?"
+max_value = 1500.0
+value = 1500.0
+allow_greater = true
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Travel Time (Years)"
+
+[node name="TravelTimeInput" type="SpinBox" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+tooltip_text = "How long was the generation ship in flight?"
+value = 100.0
+allow_greater = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Generation Ship Type"
+
+[node name="ShipType" type="OptionButton" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+tooltip_text = "Ice Ship: inhabitants placed on suspended animation for duration of trip. Live Ship: no suspended animation."
+selected = 0
+item_count = 2
+popup/item_0/text = "Ice Ship"
+popup/item_1/text = "Living Ship"
+popup/item_1/id = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Generation Ship Type"
+
+[node name="SocietyOrigin" type="OptionButton" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+tooltip_text = "Safe: the generation ship arrived safely at it's destination.
+Catastrophic: something happened during the course of flight which caused the craft to divert."
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "Safe"
+popup/item_1/text = "Catastrophic"
+popup/item_1/id = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Generation Ship Culture"
+
+[node name="OriginCulture" type="OptionButton" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+tooltip_text = "Safe: the generation ship arrived safely at it's destination.
+Catastrophic: something happened during the course of flight which caused the craft to divert."
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "American"
+popup/item_1/text = "Soviet"
+popup/item_1/id = 1
+
+[node name="SeedInput" type="LineEdit" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Society Seed (leave blank for random)"
+
+[node name="Generate" type="Button" parent="GeneratorMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Generate!"
+
+[node name="Button" type="Button" parent="GeneratorMenu/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "x"
+
+[node name="SocietyMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SocietyMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -347.0
+offset_top = -374.0
+offset_right = 347.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SocietyMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SocietyMenu/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SocietyMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Society Overview"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SocietyMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="FactionsBox" type="VBoxContainer" parent="SocietyMenu/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="SocietyMenu/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "x"
+
+[connection signal="changed" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/AgeInput" to="." method="_generator_input_changed"]
+[connection signal="changed" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer2/SeedPopInput" to="." method="_generator_input_changed"]
+[connection signal="changed" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer5/TravelTimeInput" to="." method="_generator_input_changed"]
+[connection signal="item_selected" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer3/ShipType" to="." method="_generator_input_changed"]
+[connection signal="item_selected" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer4/SocietyOrigin" to="." method="_generator_input_changed"]
+[connection signal="item_selected" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer6/OriginCulture" to="." method="_generator_input_changed"]
+[connection signal="pressed" from="GeneratorMenu/Panel/MarginContainer/VBoxContainer/Generate" to="." method="generate_society"]
+[connection signal="pressed" from="GeneratorMenu/Panel/Button" to="." method="hide_menu"]
+[connection signal="pressed" from="SocietyMenu/Panel/Button" to="." method="hide_menu"]

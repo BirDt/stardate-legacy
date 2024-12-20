@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://caiv1wcwpvpv"]
+
+[ext_resource type="Script" path="res://society-generator/components/faction_container.gd" id="1_n3img"]
+
+[node name="FactionContainer" type="VBoxContainer"]
+script = ExtResource("1_n3img")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="FactionName" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Colonial government"
+
+[node name="Population" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Population: 100"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="GovtType" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Current Focus:"
+
+[node name="Focus" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Current Focus:"
